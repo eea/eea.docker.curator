@@ -4,7 +4,7 @@
 client:
   hosts:
     - ${ES_HOST:127.0.0.1}
-  port: 9200
+  port: ${ES_PORT:9200}
   url_prefix:
   use_ssl: ${USE_SSL:False}
   certificate:
@@ -13,7 +13,7 @@ client:
   ssl_no_validate: False
   http_auth: ${HTTP_AUTH:''}
   timeout: ${TIMEOUT:120}
-  master_only: ${MASTER_ONLY:True}
+  master_only: ${MASTER_ONLY:False}
 logging:
   loglevel: INFO
   logfile:
