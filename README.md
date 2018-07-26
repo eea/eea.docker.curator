@@ -21,6 +21,9 @@ https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
 ## Configuration
 https://www.elastic.co/guide/en/elasticsearch/client/curator/current/configfile.html
 
+Default configuration file [is](https://github.com/eea/eea.docker.curator/blob/master/config_file.yml). In it, we have the following docker environment variables:
+
+
 * ES_HOST - elasticsearch hostname
 * ES_PORT - elasticsearch port
 * USE_SSL - True is elasticsearch url is https
