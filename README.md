@@ -36,9 +36,48 @@ Can be given with a volume or with a variable:
 
 * ACTION_CONFIG - yml formatted action configuration
 
+
+## Action configuration examples:
+
+https://www.elastic.co/guide/en/elasticsearch/client/curator/current/examples.html
+
+```
+---
+# Remember, leave a key empty if there is no value.  None will be a string,
+# not a Python "NoneType"
+#
+# Also remember that all examples have 'disable_action' set to True.  If you
+# want to use this action as a template, be sure to set this to False after
+# copying it.
+actions:
+  1:
+    action: delete_indices
+    description: >-
+      Delete indices older than 45 days (based on index name), for logstash-
+      prefixed indices. Ignore the error if the filter does not result in an
+      actionable list of indices (ignore_empty_list) and exit cleanly.
+    options:
+      ignore_empty_list: True
+      disable_action: True
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: logstash-
+    - filtertype: age
+      source: name
+      direction: older
+      timestring: '%Y.%m.%d'
+      unit: days
+      unit_count: 45
+
+```
+
+
 ## Usage
 
     $docker run --rm -e ACTION_CONFIG="$ACTION_CONFIG" -e ES_HOST=es.eea.europa.eu -e ES_PORT=443 -e USE_SSL="True" -e HTTP_AUTH="user:password" eeacms/curator:latest
+
+or
 
     $docker run --rm -e ACTION_CONFIG="$ACTION_CONFIG" -e ES_HOST=es.eea.europa.eu -e ES_PORT=9200 -e USE_SSL="False" -e HTTP_AUTH="user:password" eeacms/curator:latest
 
