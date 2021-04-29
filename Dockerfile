@@ -1,7 +1,7 @@
 FROM python:3.8-alpine
 
 RUN mkdir -p /config &&\
-    pip install  elasticsearch-curator==5.8.1 &&\
+    pip install  elasticsearch-curator==5.8.4 &&\
     rm -rf /var/cache/apk/*
 
 COPY config_file.yml /config/
